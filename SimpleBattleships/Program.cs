@@ -13,59 +13,59 @@ namespace SimpleBattleships
             try
             {
 
-            IBattleField battlefield = new Battlefield(10);
-            List<Battleship> allShips = new List<Battleship>();
-            List<Battleship> battleships = new List<Battleship>();
-            List<Battleship> destroyers = new List<Battleship>();
+                IBattleField battlefield = new Battlefield(10);
+                List<Battleship> allShips = new List<Battleship>();
+                List<Battleship> battleships = new List<Battleship>();
+                List<Battleship> destroyers = new List<Battleship>();
 
-            (battlefield, battleships) = CreateAndLoadBattleshipsToBattlefield(battlefield);
-            (battlefield, destroyers) = CreateAndLoadDestroyersToBattlefield(battlefield);
+                (battlefield, battleships) = CreateAndLoadBattleshipsToBattlefield(battlefield);
+                (battlefield, destroyers) = CreateAndLoadDestroyersToBattlefield(battlefield);
 
-            allShips.AddRange(battleships);
-            allShips.AddRange(destroyers);
+                allShips.AddRange(battleships);
+                allShips.AddRange(destroyers);
 
-            do
-            {
-                Console.Clear();
-                Console.WriteLine(battlefield.ReturnBattlefieldView());
-
-                (int x, int y) = GetCoorinatesFromUser(battlefield);
-
-                int? idOfTheShip = battlefield.Shoot(x, y);
-                if (idOfTheShip != null)
+                do
                 {
-                    var ship = allShips.Where(a => a.Id == idOfTheShip).FirstOrDefault();
-                    Battleship.ShipResponse response = ship.DestroyMast(x, y);
-                    switch (response)
+                    Console.Clear();
+                    Console.WriteLine(battlefield.ReturnBattlefieldView());
+
+                    (int x, int y) = GetCoorinatesFromUser(battlefield);
+
+                    int? idOfTheShip = battlefield.Shoot(x, y);
+                    if (idOfTheShip != null)
                     {
-                        case Battleship.ShipResponse.Hit:
-                            Console.WriteLine("Hit");
-                            battlefield.GetArray()[x, y].State = FieldState.ShipShooted;
-                            break;
-                        case Battleship.ShipResponse.Miss:
-                            Console.WriteLine("Miss");
-                            battlefield.GetArray()[x, y].State = FieldState.EmptyShooted;
-                            break;
-                        case Battleship.ShipResponse.Sunk:
-                            Console.WriteLine("Sunk");
-                            battlefield.GetArray()[x, y].State = FieldState.ShipShooted;
-                            break;
+                        var ship = allShips.Where(a => a.Id == idOfTheShip).FirstOrDefault();
+                        Battleship.ShipResponse response = ship.DestroyMast(x, y);
+                        switch (response)
+                        {
+                            case Battleship.ShipResponse.Hit:
+                                Console.WriteLine("Hit");
+                                battlefield.GetArray()[x, y].State = FieldState.ShipShooted;
+                                break;
+                            case Battleship.ShipResponse.Miss:
+                                Console.WriteLine("Miss");
+                                battlefield.GetArray()[x, y].State = FieldState.EmptyShooted;
+                                break;
+                            case Battleship.ShipResponse.Sunk:
+                                Console.WriteLine("Sunk");
+                                battlefield.GetArray()[x, y].State = FieldState.ShipShooted;
+                                break;
+                        }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Miss");
-                    battlefield.GetArray()[x, y].State = FieldState.EmptyShooted;
-                }
+                    else
+                    {
+                        Console.WriteLine("Miss");
+                        battlefield.GetArray()[x, y].State = FieldState.EmptyShooted;
+                    }
 
-                Thread.Sleep(700);
+                    Thread.Sleep(700);
 
-            } while (allShips.Any(a => a.IsTheShipAlive()));
+                } while (allShips.Any(a => a.IsTheShipAlive()));
 
-            Console.WriteLine("You win !");
-            Console.ReadKey();
+                Console.WriteLine("You win !");
+                Console.ReadKey();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("An unexpected problem has occurred.");
                 Console.ReadKey();
@@ -96,7 +96,7 @@ namespace SimpleBattleships
             } while (isSucceed == false);
 
             battleships.Add(battleship);
-            return (battlefield: NewBattleField,  ships : battleships);
+            return (battlefield: NewBattleField, ships: battleships);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace SimpleBattleships
         /// This function get coordinates from the user.
         /// </summary>
         /// <returns>Two coordinates x and y</returns>
-        public static (int x, int y) GetCoorinatesFromUser(IBattleField battlefield )
+        public static (int x, int y) GetCoorinatesFromUser(IBattleField battlefield)
         {
             Console.Write("x:");
             int x;
@@ -149,7 +149,7 @@ namespace SimpleBattleships
                 Console.Write("y:");
             }
 
-            return ( x : x, y: y);
+            return (x: x, y: y);
         }
 
         /// <summary>
