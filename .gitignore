@@ -150,3 +150,7 @@ packages/MSTest.TestFramework.1.2.1/MSTest.TestFramework.1.2.1.nupkg
 packages/MSTest.TestAdapter.1.2.1/MSTest.TestAdapter.1.2.1.nupkg
 packages/MSTest.TestAdapter.1.2.1/build/uap10.0/MSTest.TestAdapter.targets
 packages/MSTest.TestAdapter.1.2.1/build/uap10.0/MSTest.TestAdapter.props
+.vs/SimpleBattleships/v15/Server/sqlite3/storage.ide-wal
+.vs/SimpleBattleships/v15/Server/sqlite3/storage.ide-shm
+.vs/SimpleBattleships/v15/Server/sqlite3/storage.ide
+.vs/SimpleBattleships/v15/Server/sqlite3/db.lock
